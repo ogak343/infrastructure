@@ -12,3 +12,7 @@ management:
       access: read_only
 springdoc:
   show-actuator: true
+
+logging:
+  file:
+    name: /log/application.log
