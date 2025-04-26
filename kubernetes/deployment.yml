@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: infra-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: infra-app
+  template:
+    metadata:
+      labels:
+        app: infra-app
+    spec:
+      containers:
+        - name: infra-app
+          image: infra-app:1
+          ports:
+            - containerPort: 8080
