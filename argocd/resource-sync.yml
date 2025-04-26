@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/ogak343/infrastructure.git
     targetRevision: HEAD
-    path: argocd
+    path: gitops
   destination:
     server: https://kubernetes.default.svc
     namespace: infra-app
