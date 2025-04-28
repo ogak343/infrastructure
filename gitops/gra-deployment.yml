@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: generic-rest-api
-          image: ogabek07/gra:latest
+          image: ogabek07/gra:1
           ports:
             - containerPort: 3000
