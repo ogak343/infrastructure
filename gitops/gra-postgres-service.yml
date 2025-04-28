@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: generic-service
+  name: gra
 spec:
   selector:
     app: generic
