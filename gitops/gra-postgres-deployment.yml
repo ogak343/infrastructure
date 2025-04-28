@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: generic-rest-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: generic-rest-api
+  template:
+    metadata:
+      labels:
+        app: generic-rest-api
+    spec:
+      containers:
+        - name: generic-rest-api
+          image: ogabek07/gra:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://gra:5432/generic
+            - name: SPRING_DATASOURCE_USERNAME
+              value: generic
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: generic

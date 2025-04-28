@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: infra-app
+  name: generic-rest-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: infra-app
+      app: generic-rest-api
   template:
     metadata:
       labels:
-        app: infra-app
+        app: generic-rest-api
     spec:
       containers:
-        - name: infra-app
-          image: ogabek07/app:latest
+        - name: generic-rest-api
+          image: ogabek07/gra:latest
           ports:
             - containerPort: 3000
