@@ -1,26 +1,44 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: generic-rest-api
+  name: generic
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: generic-rest-api
+      app: generic
   template:
     metadata:
       labels:
-        app: generic-rest-api
+        app: generic
     spec:
       containers:
-        - name: generic-rest-api
-          image: ogabek07/gra:1
+        - name: generic
+          image: postgres:16
           ports:
-            - containerPort: 3000
+            - containerPort: 5432
           env:
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://gra:5432/generic
-            - name: SPRING_DATASOURCE_USERNAME
+            - name: POSTGRES_DB
               value: generic
-            - name: SPRING_DATASOURCE_PASSWORD
+            - name: POSTGRES_USER
               value: generic
+            - name: POSTGRES_PASSWORD
+              value: generic
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: generic-storage
+      volumes:
+        - name: generic-storage
+          persistentVolumeClaim:
+            claimName: generic-pvc
