@@ -1,0 +1,19 @@
+prometheus:
+  alertmanager:
+    enabled: false
+  server:
+    global:
+      scrape_interval: 15s
+    scrapeConfigs:
+      - job_name: 'kubernetes-pods'
+        kubernetes_sd_configs:
+          - role: pod
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            target_label: app
+      - job_name: 'kubernetes-nodes'
+        kubernetes_sd_configs:
+          - role: node
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_node_label_kubernetes_io_hostname]
+            target_label: node

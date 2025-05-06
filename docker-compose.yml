@@ -13,7 +13,7 @@ services:
   prometheus:
     image: prom/prometheus:v2.37.0
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./gitops.monitoriting.prometheus-configmap.yml:/etc/gitops.monitoriting.prometheus/gitops.monitoriting.prometheus-configmap.yml
     ports:
       - "9090:9090"
     networks:
